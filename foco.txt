@@ -1,0 +1,25 @@
+Instruções
+Nesta atividade, os estudantes deverão desenvolver e apresentar um trabalho sobre a linguagem de programação definida para o respectivo grupo.
+
+A apresentação deverá contemplar, obrigatoriamente, os seguintes aspectos:
+
+Contextualização da linguagem de programação
+
+Breve histórico da linguagem, abordando sua origem, evolução e principais aplicações.
+Elementos básicos da linguagem
+A apresentação deve incluir a explicação e exemplificação dos seguintes conceitos fundamentais:
+
+Variáveis
+Estruturas condicionais
+Estruturas de repetição
+Funções
+Desenvolvimento prático
+
+Implementação de um bot no Telegram responsável por realizar a validação de CPF.
+Como referência introdutória, pode ser utilizada a documentação disponibilizada em:
+https://unasp-aulas.github.io/construir-algoritmos/docs/index.html#/bot-no-telegram
+Não será permitida a utilização de bibliotecas que encapsulem ou abstraiam as APIs do Telegram. A comunicação e manipulação das APIs deverão ser realizadas diretamente pelos próprios desenvolvedores.
+Participação e versionamento
+
+Todos os integrantes do grupo deverão participar ativamente da apresentação.
+Todos os integrantes deverão realizar commits no repositório do projeto, especificamente na parte prática do trabalho.
