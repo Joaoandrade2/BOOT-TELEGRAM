@@ -5,11 +5,11 @@ public class ValidadorCPF {
      * Remove formatação (pontos e traço) antes de validar.
      */
     public static boolean validar(String cpf) {
-        // 1. Remove caracteres não numéricos (pontos, traços, espaços)
-        cpf = cpf.replaceAll("[^0-9]", "");
+        // 1. Cpf é limpo antes da validação 
+        cpf = limparCpf(cpf);
 
         // 2. Verifica se tem exatamente 11 dígitos
-        if (cpf.length() != 11) {
+        if (!tamanhoCpfValido(cpf)) {
             return false;
         }
 
@@ -18,20 +18,38 @@ public class ValidadorCPF {
             return false;
         }
 
-        // 4. Valida o primeiro dígito verificador
-        int primeiroDigito = calcularDigito(cpf, 9);
-        if (primeiroDigito != Character.getNumericValue(cpf.charAt(9))) {
+
+        //4. Valida o primeiro número digitado do Cpf
+        int primeiroNumeroCpf = calcularDigito(cpf, 9);
+        if (primeiroNumeroCpf != Character.getNumericValue(cpf.charAt(9))) {
             return false;
         }
 
-        // 5. Valida o segundo dígito verificador
-        int segundoDigito = calcularDigito(cpf, 10);
-        if (segundoDigito != Character.getNumericValue(cpf.charAt(10))) {
+        //5. Valida o segundo número digitado do Cpf
+        int segundoNumeroCpf = calcularDigito(cpf, 10);
+        if (segundoNumeroCpf != Character.getNumericValue(cpf.charAt(10))) {
             return false;
         }
 
         return true;
     }
+
+        //6.Função que limpa o cpf tirando qualquer coisa que não seja número
+        private static String limparCpf(String cpf){
+
+        cpf = cpf.replaceAll("[^0-9]", "");
+
+        return cpf;
+
+        }
+
+        //7. Valida o tamanho do Cpf
+        private static boolean tamanhoCpfValido(String cpf){
+            if (cpf.length()!= 11) {
+                return false;
+            }
+            return true;
+        }
 
     /**
      * Calcula um dígito verificador do CPF.
@@ -63,9 +81,9 @@ public class ValidadorCPF {
      * pelo algoritmo, mas são considerados inválidos na prática.
      */
     private static boolean todosDigitosIguais(String cpf) {
-        char primeiroDigito = cpf.charAt(0);
+        char primeiroNumeroCpf = cpf.charAt(0);
         for (int i = 1; i < cpf.length(); i++) {
-            if (cpf.charAt(i) != primeiroDigito) {
+            if (cpf.charAt(i) != primeiroNumeroCpf) {
                 return false;
             }
         }
