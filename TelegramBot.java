@@ -14,6 +14,8 @@ public class TelegramBot {
      // Offset controla quais mensagens já foram processadas (evita repetição)
     private static int offset = 0;
 
+    public static String chatId = "";
+
     // Método responsável por ler novas mensagens do Telegram
     public static String lerMensagem() {
     try {
@@ -56,6 +58,26 @@ public class TelegramBot {
 
                 // Se existir texto, extrai ele
                 if (textPos != -1) {
+                    
+                
+                    // Procura o campo "chat"
+                    int chatPos = json.indexOf("\"chat\":", messagePos);
+
+                    // Faz a procura do "id" após o chat
+                    int idPos = json.indexOf("\"id\":", chatPos);
+
+                    // Início do número
+                    int startChat = json.indexOf(":", idPos) + 1;
+
+                    // Final do número
+                    int endChat = json.indexOf(",", startChat);
+
+                    // Salva chat_id
+                    chatId = json.substring(startChat, endChat).trim();
+
+                    System.out.println("Chat ID: " + chatId);
+
+                    // Pega texto da mensagem
                     int start = textPos + 8;
                     int end = json.indexOf("\"", start);
 

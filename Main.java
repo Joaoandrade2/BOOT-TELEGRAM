@@ -2,39 +2,65 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Mensagem inicial para indicar que o bot foi iniciado
+        // Mensagem inicial
         System.out.println("Bot rodando...");
 
-        // Chat ID fixo (destinatário das respostas no Telegram)
-        String chatId = "8943958332";
-
-        // Loop infinito para manter o bot sempre ativo
+        // Loop infinito
         while (true) {
 
-            // Lê nova mensagem do Telegram (caso exista)
+            // Lê mensagem do Telegram
             String msg = TelegramBot.lerMensagem();
 
-            // Se chegou alguma mensagem nova
+            // Se chegou mensagem
             if (msg != null) {
 
-                // Mostra no terminal o que foi recebido
                 System.out.println("Recebi: " + msg);
 
-                // Valida o CPF usando a classe ValidadorCPF
+                System.out.println(
+                        "Chat ID: " + TelegramBot.chatId
+                );
+
+                // Valida CPF
                 boolean valido = ValidadorCPF.validar(msg);
 
-                // Se CPF for válido, responde "CPF válido"
+                // Responde usuário
                 if (valido) {
-                    TelegramBot.enviarMensagem(chatId, "CPF válido");
-                // Se não for válido, responde "CPF inválido"
+
+                    System.out.println(
+                            "Enviando: CPF válido"
+                    );
+
+                    TelegramBot.enviarMensagem(
+                            TelegramBot.chatId,
+                            "CPF válido"
+                    );
+
                 } else {
-                    TelegramBot.enviarMensagem(chatId, "CPF inválido");
+
+                    System.out.println(
+                            "Enviando: CPF inválido"
+                    );
+
+                    TelegramBot.enviarMensagem(
+                            TelegramBot.chatId,
+                            "CPF inválido"
+                    );
                 }
             }
-            // Pequena pausa para não sobrecarregar a API do Telegra
+
+            // Pausa para não sobrecarregar API
             try {
+
                 Thread.sleep(1000);
-            } catch (Exception e) {} // Ignora erros de interrupção do sleep
+
+            } catch (Exception e) {
+
+                System.out.println(
+                        "Erro no sleep"
+                );
+
+                e.printStackTrace();
+            }
         }
     }
 }
